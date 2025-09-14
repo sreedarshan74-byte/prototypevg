@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Login Page
+        </title>
+    </head>
+    <body style="background-color: palegreen;">
+        <br>
+        <br>
+        <br>
+        <br><br>
+        <form action="app1.html" style="text-align: center;" method="post">
+           <label style="font-size: 30px;">Email ID</label>
+           <input style="border: 5px solid; padding: 5px;"    type="email" required placeholder="Enter email">
+           <br>
+           <br>
+           <label style="font-size: 30px;">Password</label>
+           <input style="border: 5px solid; padding: 5px;" type="password" required placeholder="enter password">
+           <br><br><br>
+           <input style="font-size: 30px;" type="submit" padding: 5px;>
+        </form>
+        <br><br>
+        <img src="mental health image.jpg" align="center"  style="width: 300px;">
+        <img src="o.jpg" align="right" style="width: 300px;">
+
+        <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch("https://example.com/api/login", { // Replace with your actual API
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert("Login successful!");
+                console.log(result);
+                // Optionally redirect: window.location.href = "app1.html";
+            })
+            .catch(error => {
+                console.error("Login error:", error);
+                alert("Login failed. Please try again.");
+            });
+        });
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timetable page</title>
+    </head>
+    <body style="text-align: center; background-color: cornsilk;">
+        <a href="timetable.html" target="_blank">Open Page 2</a>
+        <h1> For Timetable</h1>
+        <form>
+            <label style="font-size: large;">Doctor Suggestion</label>
+            <br><br>
+            <input type="text" style="border: 5px solid; padding: 20px; width:300px;" placeholder="if necessary">
+            <br><br>
+            <br><br>
+            <label style="font-size: large;">Department Professionals Suggestion</label>
+            <br><br>
+            <input type="text" style="border: 5px solid; padding: 20px; width: 300px;" placeholder="if necessary">
+            <br><br><br><br>
+            <input type="submit" style="border: 5px solid; padding: 5px;" placeholder="if necessary">
+
+        </form>
+    
+    <script>
+        document.getElementById("timetableForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch("https://example.com/api/timetable", { // Replace with your actual API
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert("Suggestions submitted successfully!");
+                console.log(result);
+            })
+            .catch(error => {
+                console.error("Submission error:", error);
+                alert("Failed to submit suggestions.");
+            });
+        });
+    </script>
+    </body>
+
+</html>

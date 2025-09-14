@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        input[type="text"] {
+            border: 2px solid #000;
+            padding: 8px;
+            width: 300px;
+        }
+        select {
+            padding: 6px;
+            margin-top: 10px;
+        }
+        iframe {
+            margin-top: 20px;
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body style="background-color: burlywood;"">
+    
+
+    <div class="container">
+        <h1>Welcome</h1>
+        <form>
+            <label for="report">Report your problem</label><br>
+            <input type="text" id="report" placeholder="Report"><br><br><br>
+
+            <label for="viewerSelect">More Options</label><br>
+            <select id="viewerSelect" onchange="document.getElementById('viewer').src = this.value">
+                <option>Select option</option>
+                <option value="timetable.html">Generate Timetable</option>
+                <option value=".html">Community of Doctors</option>
+                
+                <option value=".html">Department Professionals</option>
+                <option value=".html">Call Doctors</option>
+                <option value=".html">Call Professionals</option>
+                <option value=".html">Message Professionals </option>
+            </select><br><br>
+
+            <iframe id="viewer"></iframe>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("reportForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const reportText = document.getElementById("report").value;
+
+            fetch("https://example.com/api/report", { // Replace with your actual API
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ report: reportText })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Report submitted successfully!");
+                console.log(data);
+            })
+            .catch(error => {
+                console.error("Error submitting report:", error);
+                alert("Failed to submit report.");
+            });
+        });
+    </script>
+
+</body>
+</html>

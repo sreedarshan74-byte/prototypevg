@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body{
+            margin: 40px 60px 40px 60px;
+            background-color: pink;
+        }
+    </style>
+    
+    <head>
+        <h1><u>Review Submission</u></h1>
+    </head>
+    <body style="text-align: center;">
+        <br><br>
+        <form action="">
+            <label style="font-size: 30px;">
+               Student App id 
+            </label>
+            <input type="number" style="padding: 5px; border: 5px solid;">
+            <br><br>
+            <label style="font-size: 30px;">Review rating 1-5</label>
+            <input type="number" style="padding: 5px; border: 5px solid;">
+            <br><br>
+            <label style="font-size: 30px;">Comments</label>
+            <input type="text" style="padding: 5px; border: 5px solid;">
+            <br><br>
+             <input type="submit" style="padding: 5px; border: 5px solid;">
+        </form>
+        <script>
+        document.getElementById("reviewForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent page reload
+
+            const appId = document.getElementById("appId").value;
+            const rating = document.getElementById("rating").value;
+            const comments = document.getElementById("comments").value;
+
+            // Display the submitted data
+            document.getElementById("output").innerHTML = `
+                <strong>Review Submitted!</strong><br>
+                App ID: ${appId}<br>
+                Rating: ${rating}<br>
+                Comments: ${comments}
+            `;
+
+            // Optionally store in localStorage
+            localStorage.setItem("lastReview", JSON.stringify({ appId, rating, comments }));
+        });
+    </script>
+
+    </body>
+</html>

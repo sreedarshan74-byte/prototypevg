@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+           Register page
+        </title>
+        
+    </head>
+    <body style="background-color: lightblue;">
+        <h1 style="text-align: center;"><mark><u>Welcome to Digital mental Health App</u></mark><h1>
+        <br>
+           <p style="text-align: center;"><u>About this APP</u></p>
+           <br>
+           <P style="text-align: left;">This is for students</P>
+            <fieldset>
+            <legend style="text-align: center;">
+                 For Register
+            </legend>
+            <form action="login page.html">
+                <label style="width: 20px;"><b>Name</b></label>
+                <input type="text" required style="padding: 5px;">
+                <br><br>
+                <label>Age</label>
+                <input type="number" required style="padding: 5px;">
+                <br>
+                <input style="border: 5px solid; width: 100px; padding: 5px;"    type="submit">
+            </form>
+        </fieldset>
+        <div id="message"></div>
+
+
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch("https://example.com/api/register", { // Replace with your actual API
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert("Registration successful!");
+                console.log(result);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Something went wrong. Please try again.");
+            });
+        });
+    </script>
+    </body>
+
+</html>
